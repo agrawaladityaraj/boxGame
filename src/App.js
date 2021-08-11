@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Box from "./Components/Box";
+import "./App.css";
 
-function App() {
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const App = () => {
+  const [box1, setBox1] = useState(0);
+  const [box2, setBox2] = useState(0);
+
+  const change = (num) => {
+    setBox2(box1);
+    setBox1(num);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {arr.map((i) => {
+        return (
+          <Box
+            selected={box1 === i || box2 === i}
+            number={i}
+            change={change}
+          ></Box>
+        );
+      })}
     </div>
   );
-}
+};
 
 export default App;
